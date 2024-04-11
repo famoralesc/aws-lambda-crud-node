@@ -1,7 +1,7 @@
 const { v4 } = require('uuid')
 const AWS = require('aws-sdk')
 
-module.exports.addTask = async (event) => {
+addTask = async (event) => {
     const dynamodb = new AWS.DynamoDB.DocumentClient()
 
     const {title, description} = JSON.parse(event.body)
@@ -17,4 +17,7 @@ module.exports.addTask = async (event) => {
     }).promise()
 
     return {statusCode: 200, body: JSON.stringify(newTask)}
+}
+module.exports = {
+    addTask
 }
